@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid rgb(170, 235, 72);
+            margin: 80px;
+            border-radius: 20px;
+            box-shadow: 20px 20px rgb(193, 239, 124);
+            height:400px;
+        }
+        .image-container{
+            flex: 0 0 50%;
+            padding: 10px;
+        }
+        .text-container{
+            flex: 0 0 45%; 
+            padding: 10px;
+        }
+        img{
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+        }
+        h2, p{
+            margin: 0;
+        }
+        h1{
+            margin-top: 50px;
+            text-align: center;
+            color: rgb(147, 109, 243);
+            font-weight: 900;
+            font-family:Verdana;
+            font-size: 50px;
+        }
+        .chat-box{
+            border: 2px solid rgb(147, 109, 243);
+            border-radius: 10px;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+            width: 500px;
+        }
+        .message{
+            margin: 5px 0;
+        }
+        .user-message{
+            color: blue;
+        }
+        .counselor-message{
+            color: rgb(147, 109, 243);
+        }
+        .input-container{
+            margin-top: 20px;
+        }
+        input[type="text"]{
+            width: 70%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 2px solid rgb(147, 109, 243);;
+            width: 455px;
+        }
+        button{
+            padding: 5px 10px;
+            border: none;
+            background-color: rgb(147, 109, 243);
+            color: black;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: rgb(95, 39, 236);
+        }
+    </style>
+</head>
+<body>
+    <h1>Talks with Counselors</h1>
+    <center>
+    <div class="chat-box" id="chat-box">
+        <div class="message counselor-message">
+            <p>Hello! How can I assist you today?</p>
+        </div>
+    </div>
+    <div class="input-container">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    </center>
+  
+
+    <script>
+        function sendMessage() {
+            var userMessage = document.getElementById("user-input").value;
+            var chatBox = document.getElementById("chat-box");
+
+            var userMessageElement = document.createElement("div");
+            userMessageElement.className = "message user-message";
+            userMessageElement.innerHTML = "<p>" + userMessage + "</p>";
+            chatBox.appendChild(userMessageElement);
+
+            var counselorMessageElement = document.createElement("div");
+            counselorMessageElement.className = "message counselor-message";
+            counselorMessageElement.innerHTML = "<p>Thank you for reaching out. I'm here to help.</p>";
+            chatBox.appendChild(counselorMessageElement);
+
+            // Scroll to bottom
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Clear input field
+            document.getElementById("user-input").value = "";
+        }
+    </script>
+</body>
+</html>
