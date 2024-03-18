@@ -47,10 +47,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Curamus Form</h1>
-        <form id="mentalHealthAssessmentForm">
+        <form id="mentalHealthAssessmentForm" onsubmit="diagnose(event)">
             <div>
-                Fill please the form given below so we can get to know each other better. Let's take this step together towards a happier and healthier mind!
+                <b>Fill please the form given below so we can get to know each other better. Let's take this step together towards a happier and healthier mind!
+                </b>
             </div>
             <br>
             <div class="question">
@@ -75,8 +75,8 @@
                 <input type="radio" id="question3_option3" name="question3" value="3">Frequently<br>
                 <input type="radio" id="question3_option4" name="question3" value="4">Constantly
             </div>
-            <div> 
-                <label for="q4">Question 4: Can you tell me about any changes you've noticed in your mood or behavior recently (getting irritable or having mood swings)?</label>
+            <div class="question"> 
+                <label for="question4">4. Can you tell me about any changes you've noticed in your mood or behavior recently (getting irritable or having mood swings)?</label><br>
                 <input type="radio" id="question4_option1" name="question4" value="1" required>Rarely or never<br>
                 <input type="radio" id="question4_option2" name="question4" value="2">Occasionally<br>
                 <input type="radio" id="question4_option3" name="question4" value="3">Frequently<br>
@@ -97,8 +97,8 @@
             <input type="radio" id="question6_option3" name="question6" value="3">Eating less than usual<br>
             <input type="radio" id="question6_option4" name="question6" value="4">Loss of appetite
         </div>
-        <div>
-            <label for="q7">Question 7: How would you describe your sleep patterns and energy levels?</label>
+        <div class="question">
+            <label for="question7">7. How would you describe your sleep patterns and energy levels?</label><br>
             <input type="radio" id="question7_option1" name="question7" value="1" required>Consistently refreshed and energized<br>
             <input type="radio" id="question7_option2" name="question7" value="2">Moderately rested but occasional trouble sleeping<br>
             <input type="radio" id="question7_option3" name="question7" value="3">Variable energy levels, difficult to predict<br>
@@ -121,21 +121,22 @@
         <input type="radio" id="question9_option4" name="question9" value="4">Very high
     </div>
 
-    <div>
-        <label for="q10">Question 10: How do you typically cope with difficult emotions or situations?</label>
+    <div class="question">
+        <label for="question10">10. How do you typically cope with difficult emotions or situations?</label>
         <input type="radio" id="question10_option1" name="question10" value="1" required>Talk to friends or family for support<br>
         <input type="radio" id="question10_option2" name="question10" value="2">Engage in physical exercise or activities<br>
         <input type="radio" id="question10_option3" name="question10" value="3">Practice mindfulness or meditation<br>
         <input type="radio" id="question10_option4" name="question10" value="4">Seek professional help or counseling<br><br>
 
     </div>
-        <p id="out"></p>
-            <button type="button" onclick="countSelectedOptions()">Submit</button>
+            <button type="submit" >Submit</button>
         </form>
     </div>
 
     <script>
-        function countSelectedOptions() {
+        function diagnose(event){
+            event.preventDefault();
+
             let countOption1 = 0;
             let countOption2 = 0;
             let countOption3 = 0;
@@ -165,8 +166,10 @@
                     }
                 }
             });
-            var p= document.getElementById('out');
-            p.innerText = countOption1;
+            
+            if(countOption4<=4) window.location.href="low_diag.html";
+            else if(countOption4>4 && countOption4<=6) window.location.href="moderate_d.html";
+            else window.location.href= "high_diag.html" ;
         }
     </script>
 </body>
